@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "a54ae867-3a32-4012-b58d-842ed7663f94",
+		"name": "Korber",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Factorial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"function fact(value){",
+							"",
+							"    factorial = 1",
+							"    if(value == 0 || value == 1)",
+							"        factorial = 1;",
+							"    else",
+							"    {",
+							"        for(let i=value; i>=1; i--){",
+							"            factorial = factorial * i;",
+							"        }",
+							"    }",
+							"    return factorial;",
+							"}",
+							"",
+							"switch (pm.response.code)",
+							"{   ",
+							"    case 100: // Information",
+							"    brak;",
+							"",
+							"    case 200: // Success",
+							"        pm.test(\"VALID Factorial Value\", function () {",
+							"            var jsonData = pm.response.json();",
+							"            pm.expect(jsonData.answer).to.eq(fact(pm.iterationData.get(\"inputValue\")));",
+							"        });",
+							"    break;",
+							"",
+							"    case 300: //Ignore there are no redirects",
+							"    break;",
+							"",
+							"    case 400: //Client Side Error",
+							"    break;",
+							"",
+							"    case 500: //Server Side Error",
+							"        pm.test(\"INVALID Factorial Value\", function () {",
+							"            var textData = pm.response.text();",
+							"            pm.expect(textData).to.contain(\"<title>500 Internal Server Error</title>\");",
+							"            pm.expect(textData).to.contain(\"<h1>Internal Server Error</h1>\");",
+							"            pm.expect(textData).to.contain(\"<p>The server encountered an internal error and was unable to complete your request.  Either the server is overloaded or there is an error in the application.</p>\");",
+							"        });",
+							"    break;",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "number",
+							"value": "{{inputValue}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://qainterview.pythonanywhere.com/",
+					"protocol": "http",
+					"host": [
+						"qainterview",
+						"pythonanywhere",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

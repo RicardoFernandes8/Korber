@@ -1,0 +1,9 @@
+“We would like you to test this app: http://qainterview.pythonanywhere.com/
+
+More specifically, we would like you to:
+
+· Implement automated tests
+
+· The application has one REST endpoint that takes a parameter. Please discover it and then write an API test
+
+· Find bugs and report them in a separate document
